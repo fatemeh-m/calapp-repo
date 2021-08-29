@@ -7,11 +7,9 @@ import java.util.*;
  * This class contains methods working with files
  */
 public class FileManager {
-    private static String pathname;
 
-    public static LinkedList<Expression> readExpressions(String path)
+    public static LinkedList<Expression> readExpressions(String pathname)
             throws FileNotFoundException, InputMismatchException{
-        pathname = path;
 
         LinkedList<Expression> expressionList = new LinkedList<>();
         double op1, op2;
@@ -29,7 +27,7 @@ public class FileManager {
         return expressionList;
     }
 
-    public static void writeResults(LinkedList<Expression> expressions) throws IOException{
+    public static void writeResults(String pathname, LinkedList<Expression> expressions) throws IOException{
         List<String> lines = new ArrayList<>();
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(pathname))) {
             while (bufferedReader.ready())

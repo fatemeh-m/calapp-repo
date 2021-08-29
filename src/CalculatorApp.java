@@ -9,22 +9,26 @@ import java.util.Scanner;
  * containing mathematical expressions and solves the expressions
  */
 public class CalculatorApp {
-    private static LinkedList<Expression> expressionList;
-    private static Calculator calculator = new Calculator();
+    private String pathname;
+    private LinkedList<Expression> expressionList;
+    private Calculator calculator;
 
-    public static void main(String[] args){
+    public CalculatorApp(){
+        calculator = new Calculator();
+    }
+    public void run(){
         readFile();
         runCalculator();
         saveResult();
     }
 
-    private static void readFile(){
+    private void readFile(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter your file path:");
-        String path = scanner.nextLine();
+        pathname = scanner.nextLine();
 
         try {
-            expressionList = FileManager.readExpressions(path);
+            expressionList = FileManager.readExpressions(pathname);
         } catch (FileNotFoundException e) {
             System.out.println("The file was not found!");
             System.exit(0);
@@ -34,7 +38,7 @@ public class CalculatorApp {
         }
     }
 
-    private static void runCalculator(){
+    private void runCalculator(){
         System.out.println("Calculating expressions started...");
         try {
            expressionList.forEach(calculator::calculate);
@@ -45,9 +49,9 @@ public class CalculatorApp {
 
     }
 
-    private static void saveResult(){
+    private void saveResult(){
         try {
-            FileManager.writeResults(expressionList);
+            FileManager.writeResults(pathname, expressionList);
             System.out.println("Results saved successfully!");
 
         } catch (IOException e) {
