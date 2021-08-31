@@ -1,0 +1,10 @@
+com\mycompany\app\Division.class
+com\mycompany\app\Multiplication.class
+com\mycompany\app\Expression.class
+com\mycompany\app\FileManager.class
+com\mycompany\app\Subtraction.class
+com\mycompany\app\App.class
+com\mycompany\app\Addition.class
+com\mycompany\app\Calculator.class
+com\mycompany\app\CalculatorApp.class
+com\mycompany\app\Operation.class
