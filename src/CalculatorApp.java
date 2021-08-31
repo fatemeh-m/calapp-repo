@@ -3,9 +3,8 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This program implement a calculator that takes a text file
@@ -15,7 +14,7 @@ public class CalculatorApp {
     private String pathname;
     private LinkedList<Expression> expressionList;
     private Calculator calculator;
-    private Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public CalculatorApp(){
         calculator = new Calculator();
@@ -35,14 +34,14 @@ public class CalculatorApp {
 
         } catch (FileNotFoundException e) {
             //System.out.println("The file was not found!");
-            logger.log(Level.SEVERE,"The file was not found!");
+            logger.error("The file was not found!");
             System.exit(0);
         } catch (InputMismatchException e) {
-            logger.log(Level.SEVERE, "Invalid expression found!");
+            logger.error("Invalid expression found!");
             //System.out.println("Invalid expression found!");
             System.exit(0);
         } catch (Exception e) {
-            logger.log(Level.SEVERE, "Process failed!");
+            logger.error("Process failed!");
             System.exit(0);
         }
     }
@@ -52,7 +51,7 @@ public class CalculatorApp {
         try {
            expressionList.forEach(calculator::calculate);
         } catch (InputMismatchException e) {
-            logger.log(Level.SEVERE, "Invalid operator found!");
+            logger.error("Invalid operator found!");
          //   System.out.println("Invalid operator found!");
             System.exit(0);
         }
@@ -65,10 +64,10 @@ public class CalculatorApp {
             System.out.println("Results saved successfully!");
 
         } catch (IOException e) {
-            logger.log(Level.SEVERE, "Updating results failed!");
+            logger.error("Updating results failed!");
          //   System.out.println("Updating results failed!");
         } catch (Exception e) {
-            logger.log(Level.SEVERE, "Process failed!");
+            logger.error("Process failed!");
             System.exit(0);
         }
     }
