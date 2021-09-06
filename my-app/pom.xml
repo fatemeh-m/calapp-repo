@@ -12,6 +12,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+	
 
   <dependencies>
     <dependency>
@@ -82,5 +83,14 @@
           <version>3.0.0</version>
         </plugin>
       </plugins>
+	
+      <resources>
+        <resource>
+          <directory>src/resources</directory>
+          <includes>
+            <include>logback.xml</include>
+          </includes>
+        </resource>
+      </resources>
   </build>
 </project>
