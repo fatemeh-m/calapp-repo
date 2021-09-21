@@ -12,14 +12,13 @@ import org.slf4j.LoggerFactory;
  * This program implement a calculator that takes a text file
  * containing mathematical expressions and solves the expressions
  */
+
 public class CalculatorApp {
     private String pathname;
     private LinkedList<Expression> expressionList;
     private Calculator calculator;
     private final Logger logger = LoggerFactory.getLogger(CalculatorApp.class);
-    public CalculatorApp(){
-        calculator = new Calculator();
-    }
+
     public void run(){
         readFile();
         runCalculator();
@@ -35,14 +34,14 @@ public class CalculatorApp {
 
         } catch (FileNotFoundException e) {
             //System.out.println("The file was not found!");
-            logger.error("The file was not found!");
+            logger.error("The file was not found!", e);
             System.exit(0);
         } catch (InputMismatchException e) {
-            logger.error("Invalid expression found!");
+            logger.error("Invalid expression found!", e);
             //System.out.println("Invalid expression found!");
             System.exit(0);
         } catch (Exception e) {
-            logger.error("Process failed!");
+            logger.error("Process failed!", e);
             System.exit(0);
         }
     }
@@ -53,7 +52,7 @@ public class CalculatorApp {
             for (Expression e: expressionList)
                 calculator.calculate(e);
         } catch (InputMismatchException e) {
-            logger.error("Invalid operator found!");
+            logger.error("Invalid operator found!", e);
          //   System.out.println("Invalid operator found!");
             System.exit(0);
         }
@@ -66,10 +65,10 @@ public class CalculatorApp {
             logger.info("Results saved successfully!");
 
         } catch (IOException e) {
-            logger.error("Updating results failed!");
+            logger.error("Updating results failed!", e);
          //   System.out.println("Updating results failed!");
         } catch (Exception e) {
-            logger.error("Process failed!");
+            logger.error("Process failed!", e);
             System.exit(0);
         }
     }
