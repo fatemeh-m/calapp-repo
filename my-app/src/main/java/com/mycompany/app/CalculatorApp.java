@@ -7,6 +7,9 @@ import java.util.LinkedList;
 import java.util.Scanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
+import org.springframework.stereotype.Component;
 
 /**
  * This program implement a calculator that takes a text file
@@ -16,8 +19,10 @@ import org.slf4j.LoggerFactory;
 public class CalculatorApp {
     private String pathname;
     private LinkedList<Expression> expressionList;
+    @Autowired
+    private Logger logger;
+    @Autowired
     private Calculator calculator;
-    private final Logger logger = LoggerFactory.getLogger(CalculatorApp.class);
 
     public void run(){
         readFile();
@@ -52,7 +57,7 @@ public class CalculatorApp {
             for (Expression e: expressionList)
                 calculator.calculate(e);
         } catch (InputMismatchException e) {
-            logger.error("Invalid operator found!", e);
+            logger.error(e.getMessage(), e);
          //   System.out.println("Invalid operator found!");
             System.exit(0);
         }
@@ -71,5 +76,9 @@ public class CalculatorApp {
             logger.error("Process failed!", e);
             System.exit(0);
         }
+    }
+
+    public void setCalculator(Calculator calculator) {
+        this.calculator = calculator;
     }
 }

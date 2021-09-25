@@ -1,5 +1,8 @@
 package com.mycompany.app;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Subtraction extends Operation {
     @Override
     public double calculateResult(double op1, double op2) {
