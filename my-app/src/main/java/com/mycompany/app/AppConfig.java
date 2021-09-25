@@ -3,21 +3,23 @@ package com.mycompany.app;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.HashMap;
 
 
 @Configuration
+@ComponentScan
 public class AppConfig {
     @Bean
     public Calculator calculator(){
         return new Calculator(operationMap());
     }
-    @Bean
-    public CalculatorApp calculatorApp(){
-        return new CalculatorApp();
-    }
+//    @Bean
+//    public CalculatorApp calculatorApp(){
+//        return new CalculatorApp();
+//    }
     @Bean
     public Subtraction subtraction(){
         return new Subtraction();
@@ -45,6 +47,7 @@ public class AppConfig {
     }
     @Bean
     public Logger logger(){
-        return LoggerFactory.getLogger(calculatorApp().getClass());
+        //return LoggerFactory.getLogger(calculatorApp().getClass());
+        return LoggerFactory.getLogger(CalculatorApp.class);
     }
 }

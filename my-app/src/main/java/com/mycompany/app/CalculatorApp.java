@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
  * This program implement a calculator that takes a text file
  * containing mathematical expressions and solves the expressions
  */
-
+@Component
 public class CalculatorApp {
     private String pathname;
     private LinkedList<Expression> expressionList;

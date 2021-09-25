@@ -8,6 +8,7 @@ import java.util.*;
 /**
  * This class contains methods working with files
  */
+
 public class FileManager {
 
     public static LinkedList<Expression> readExpressions(String pathname)
