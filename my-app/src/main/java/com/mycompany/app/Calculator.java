@@ -2,7 +2,7 @@ package com.mycompany.app;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
+import org.reflections.Reflections;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 
@@ -14,9 +14,19 @@ import java.util.InputMismatchException;
 public class Calculator {
     private HashMap<Character, Operation> operationMap;
 
-    public Calculator(HashMap<Character, Operation> map){
+    public Calculator(){
         operationMap = map;
 
+        Reflections reflections = new Reflections("com.mycompany.operator");
+        Set<Class<? extends Operation>> subTypes = reflections.getSubTypesOf(Operation.class);
+        for (Class<? extends Operation> opClass: subTypes) {
+            Operation op = opClass.newInstance();
+            operationMap.put(op.getKey(), op);
+        }
+//        operationMap.put('+', new Addition());
+//        operationMap.put('-', new Subtraction());
+//        operationMap.put('*', new Multiplication());
+//        operationMap.put('/', new Division());
     }
 
     public void calculate(Expression expression) throws InputMismatchException {
