@@ -1,4 +1,4 @@
-package com.mycompany.app;
+package com.mycompany;
 
 public abstract class Operation {
     public abstract char getKey();

@@ -2,17 +2,16 @@ package com.mycompany.app;
 
 import org.reflections.Reflections;
 import org.springframework.stereotype.Component;
-
-import java.util.HashMap;
-import java.util.InputMismatchException;
-import java.util.Set;
-
+import java.util.*;
+//import com.mycompany.operators.*;
+import com.mycompany.Operation;
 /**
  *This class implements a calculator which
  * supports four basic math operations
  */
 @Component
 public class Calculator {
+
     private HashMap<Character, Operation> operationMap;
 
     public Calculator() throws IllegalAccessException, InstantiationException {
@@ -26,7 +25,7 @@ public class Calculator {
             operationMap.put(op.getKey(), op);
         }
     }
-
+    
     public void calculate(Expression expression) throws InputMismatchException {
         if (!operationMap.containsKey(expression.getOperator())){
             throw new InputMismatchException("Invalid operator found!");
