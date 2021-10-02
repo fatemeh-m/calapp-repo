@@ -2,6 +2,9 @@ package com.mycompany.app;
 
 import org.reflections.Reflections;
 import org.springframework.stereotype.Component;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 //import com.mycompany.operators.*;
 import com.mycompany.Operation;
@@ -17,7 +20,13 @@ public class Calculator {
     public Calculator() throws IllegalAccessException, InstantiationException {
         operationMap = new HashMap<>();
 
-        Reflections reflections = new Reflections("com.mycompany.operators");
+        Properties properties = new Properties();
+        try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("config.properties")) {
+            properties.load(inputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Reflections reflections = new Reflections(properties.getProperty("operators.location"));
         Set<Class<? extends Operation>> classes = reflections.getSubTypesOf(Operation.class);
 
         for (Class<? extends Operation> opClass : classes) {
