@@ -4,6 +4,7 @@ import com.mycompany.Operation;
 
 public class Subtraction extends Operation {
     private final static char KEY = '-';
+
     @Override
     public char getKey() {
         return KEY;
