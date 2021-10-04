@@ -57,6 +57,7 @@
       <artifactId>spring-core</artifactId>
       <version>5.2.17.RELEASE</version>
     </dependency>
+
     <dependency>
         <groupId>com.mycompany.operators</groupId>
         <artifactId>operators</artifactId>
@@ -102,7 +103,7 @@
           <includes>
             <include>logback.xml</include>
             <include>beans.xml</include>
-            <include>config.properties</include>
+            <include>application.properties</include>
           </includes>
         </resource>
       </resources>

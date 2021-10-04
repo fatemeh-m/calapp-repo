@@ -1,13 +1,23 @@
 package com.mycompany.app;
 
-
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 
-@ComponentScan
 @Configuration
 @PropertySource("classpath:application.properties")
-public class AppConfig {
+public class PropertyLoader {
+
+    @Value("${operators.packageName}")
+    private String path;
+
+    public String getPath() {
+        return path;
+    }
 }
+
+
+
+
+

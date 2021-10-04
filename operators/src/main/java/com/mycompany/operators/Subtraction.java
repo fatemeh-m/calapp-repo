@@ -3,7 +3,7 @@ package com.mycompany.operators;
 import com.mycompany.Operation;
 
 public class Subtraction extends Operation {
-    private final char KEY = '-';
+    private final static char KEY = '-';
     @Override
     public char getKey() {
         return KEY;

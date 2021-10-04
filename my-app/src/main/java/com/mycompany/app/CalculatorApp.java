@@ -2,16 +2,12 @@ package com.mycompany.app;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.InputMismatchException;
 import java.util.LinkedList;
-import java.util.Properties;
 import java.util.Scanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 
 /**
@@ -40,12 +36,10 @@ public class CalculatorApp {
             expressionList = FileManager.readExpressions(pathname);
 
         } catch (FileNotFoundException e) {
-            //System.out.println("The file was not found!");
             logger.error("The file was not found!", e);
             System.exit(0);
         } catch (InputMismatchException e) {
             logger.error("Invalid expression found!", e);
-            //System.out.println("Invalid expression found!");
             System.exit(0);
         } catch (Exception e) {
             logger.error("Process failed!", e);
@@ -60,7 +54,6 @@ public class CalculatorApp {
                 calculator.calculate(e);
         } catch (InputMismatchException e) {
             logger.error(e.getMessage(), e);
-         //   System.out.println("Invalid operator found!");
             System.exit(0);
         }
 
@@ -73,14 +66,10 @@ public class CalculatorApp {
 
         } catch (IOException e) {
             logger.error("Updating results failed!", e);
-         //   System.out.println("Updating results failed!");
         } catch (Exception e) {
             logger.error("Process failed!", e);
             System.exit(0);
         }
     }
 
-//    public void setCalculator(Calculator calculator) {
-//        this.calculator = calculator;
-//    }
 }

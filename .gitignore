@@ -1,0 +1,5 @@
+*.idea
+*.iml
+.git
+my-app\logs\
+my-app\target\
