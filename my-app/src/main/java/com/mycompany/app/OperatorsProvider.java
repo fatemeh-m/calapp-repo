@@ -24,7 +24,7 @@ public class OperatorsProvider {
     }
 
     private void addSupportedOperators(){
-        Reflections reflections = new Reflections(propertyLoader.getPath());
+        Reflections reflections = new Reflections(propertyLoader.getPropery("operators.packageName"));
         Set<Class<? extends Operation>> classes = reflections.getSubTypesOf(Operation.class);
 
         Operation op = null;

@@ -8,12 +8,14 @@ import org.springframework.context.annotation.PropertySource;
 @Configuration
 @PropertySource("classpath:application.properties")
 public class PropertyLoader {
+    private Environment environment;
 
-    @Value("${operators.packageName}")
-    private String path;
+    public PropertyLoader(@AutoWired Environment env){
+        environment = env;
+    }
 
-    public String getPath() {
-        return path;
+    public String getProperty(String key) {
+        return environment.getProperty(key);
     }
 }
 
