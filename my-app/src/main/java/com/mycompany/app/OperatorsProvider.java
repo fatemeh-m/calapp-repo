@@ -18,7 +18,6 @@ public class OperatorsProvider {
     private static final Logger logger = LoggerFactory.getLogger(OperatorsProvider.class);
     private String packageName;
 
-    @Autowired
     public OperatorsProvider(@Value("${operators.packageName}") String packageName) {
         this.packageName = packageName;
         addSupportedOperators();
