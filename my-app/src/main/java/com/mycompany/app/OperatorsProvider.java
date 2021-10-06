@@ -5,6 +5,7 @@ import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import java.util.HashMap;
 import java.util.InputMismatchException;
@@ -15,16 +16,16 @@ public class OperatorsProvider {
 
     private final HashMap<Character, Operation> operatorsMap = new HashMap<Character, Operation>();
     private static final Logger logger = LoggerFactory.getLogger(OperatorsProvider.class);
-    PropertyLoader propertyLoader;
+    private String packageName;
 
     @Autowired
-    public OperatorsProvider(PropertyLoader pl) {
-        propertyLoader = pl;
+    public OperatorsProvider(@Value("${operators.packageName}") String packageName) {
+        this.packageName = packageName;
         addSupportedOperators();
     }
 
     private void addSupportedOperators(){
-        Reflections reflections = new Reflections(propertyLoader.getPropery("operators.packageName"));
+        Reflections reflections = new Reflections(packageName);
         Set<Class<? extends Operation>> classes = reflections.getSubTypesOf(Operation.class);
 
         Operation op = null;
