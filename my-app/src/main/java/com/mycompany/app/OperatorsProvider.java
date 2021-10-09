@@ -13,9 +13,9 @@ import java.util.Set;
 @Component
 public class OperatorsProvider {
 
-    private final HashMap<Character, Operation> operatorsMap = new HashMap<Character, Operation>();
+    private final HashMap<Character, Operation> operatorsMap = new HashMap<>();
     private static final Logger logger = LoggerFactory.getLogger(OperatorsProvider.class);
-    private String packageName;
+    private final String packageName;
 
     public OperatorsProvider(@Value("${operators.packageName}") String packageName) {
         this.packageName = packageName;
@@ -26,7 +26,7 @@ public class OperatorsProvider {
         Reflections reflections = new Reflections(packageName);
         Set<Class<? extends Operation>> classes = reflections.getSubTypesOf(Operation.class);
 
-        Operation op = null;
+        Operation op;
         for (Class<? extends Operation> opClass : classes) {
             try {
                 op = opClass.newInstance();
