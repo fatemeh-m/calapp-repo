@@ -97,7 +97,6 @@
           <directory>src/resources</directory>
           <includes>
             <include>logback.xml</include>
-            <include>beans.xml</include>
             <include>application.properties</include>
           </includes>
         </resource>
