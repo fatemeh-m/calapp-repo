@@ -1,4 +1,4 @@
-package com.mycompany.app;
+package com.mycompany.server;
 
 
 import org.springframework.context.annotation.ComponentScan;
@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 
-@ComponentScan
+@ComponentScan(basePackages = {"com.mycompany.server"})
 @Configuration
 @PropertySource("classpath:application.properties")
 public class AppConfig {

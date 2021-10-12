@@ -1,4 +1,4 @@
-package com.mycompany.app;
+package com.mycompany.server;
 
 import com.mycompany.Operation;
 import org.reflections.Reflections;

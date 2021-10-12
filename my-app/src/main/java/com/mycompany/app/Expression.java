@@ -1,10 +1,12 @@
 package com.mycompany.app;
 
+import java.io.Serializable;
+
 /**
  * This Class represents a simple mathematical expression
  * including two operand and one operator
  */
-public class Expression {
+public class Expression implements Serializable {
     private final double operand1;
     private final double operand2;
     private final char operator;
@@ -34,5 +36,10 @@ public class Expression {
 
     public void setResult(double result){
         this.result = result;
+    }
+
+    public String toString(){
+        String str = operand1 + " " + operator + " " + operand2 + " = " + result;
+        return str;
     }
 }

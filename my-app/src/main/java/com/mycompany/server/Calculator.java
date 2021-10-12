@@ -1,6 +1,7 @@
-package com.mycompany.app;
+package com.mycompany.server;
 
 
+import com.mycompany.app.Expression;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.mycompany.Operation;
@@ -14,7 +15,7 @@ import java.util.InputMismatchException;
 @Component
 public class Calculator {
 
-    private  OperatorsProvider operatorsProvider;
+    private OperatorsProvider operatorsProvider;
 
     @Autowired
     public Calculator(OperatorsProvider op) {
