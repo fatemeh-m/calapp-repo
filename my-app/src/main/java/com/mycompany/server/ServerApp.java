@@ -10,6 +10,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.InputMismatchException;
 
 @Component
 public class ServerApp {
@@ -37,11 +38,9 @@ public class ServerApp {
                 ObjectInputStream inputStream = new ObjectInputStream(client.getInputStream());
                 ObjectOutputStream outputStream = new ObjectOutputStream(client.getOutputStream());
 
-//                while (!client.isClosed()) {
-                    Expression expression = (Expression) inputStream.readObject();
-                    calculator.calculate(expression);
-                    outputStream.writeObject(expression);
-//                }
+                Expression expression = (Expression) inputStream.readObject();
+                calculator.calculate(expression);
+                outputStream.writeObject(expression);
 
             } catch (IOException | ClassNotFoundException e) {
                 logger.error("Process failed!", e);
