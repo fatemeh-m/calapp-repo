@@ -10,6 +10,9 @@ public class Connection {
     private Socket socket;
     private ObjectOutputStream outputStream;
     private ObjectInputStream inputStream;
+    
+    private final String ADDRESS = "127.0.0.1";
+    private final int PORT = 5000;
 
 
     public Expression execute(Expression expression) throws IOException, ClassNotFoundException {
@@ -22,7 +25,7 @@ public class Connection {
     }
 
     private void connect() throws IOException {
-        socket = new Socket("127.0.0.1", 5000);
+        socket = new Socket(ADDRESS, PORT);
         outputStream = new ObjectOutputStream(socket.getOutputStream());
         inputStream = new ObjectInputStream(socket.getInputStream());
     }
