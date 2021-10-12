@@ -40,7 +40,6 @@ public class ClientApp {
                 System.out.println("enter your expression:");
                 input = scanner.nextLine();
             }
-            connection.close();
         } catch (Exception e){
             System.out.println("Process failed!");
             logger.error(e.getMessage(), e);

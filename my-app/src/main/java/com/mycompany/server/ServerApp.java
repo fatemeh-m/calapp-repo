@@ -37,11 +37,11 @@ public class ServerApp {
                 ObjectInputStream inputStream = new ObjectInputStream(client.getInputStream());
                 ObjectOutputStream outputStream = new ObjectOutputStream(client.getOutputStream());
 
-                while (!client.isClosed()) {
+//                while (!client.isClosed()) {
                     Expression expression = (Expression) inputStream.readObject();
                     calculator.calculate(expression);
                     outputStream.writeObject(expression);
-                }
+//                }
 
             } catch (IOException | ClassNotFoundException e) {
                 logger.error("Process failed!", e);
