@@ -13,12 +13,17 @@ public class Connection {
 
 
     public Expression execute(Expression expression) throws IOException, ClassNotFoundException {
+        connect();
+        outputStream.writeObject(expression);
+        expression = (Expression) inputStream.readObject();
+        socket.close();
+
+        return expression;
+    }
+
+    private void connect() throws IOException {
         socket = new Socket("127.0.0.1", 5000);
         outputStream = new ObjectOutputStream(socket.getOutputStream());
         inputStream = new ObjectInputStream(socket.getInputStream());
-
-        outputStream.writeObject(expression);
-        expression = (Expression) inputStream.readObject();
-        return expression;
     }
 }
