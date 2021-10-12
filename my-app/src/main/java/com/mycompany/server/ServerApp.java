@@ -29,22 +29,23 @@ public class ServerApp {
     }
 
     public void run() {
-        try {
-            Socket client;
-            client = server.accept();
+        while (true) {
+            try {
+                Socket client;
+                client = server.accept();
 
-            ObjectInputStream inputStream = new ObjectInputStream(client.getInputStream());
-            ObjectOutputStream outputStream = new ObjectOutputStream(client.getOutputStream());
+                ObjectInputStream inputStream = new ObjectInputStream(client.getInputStream());
+                ObjectOutputStream outputStream = new ObjectOutputStream(client.getOutputStream());
 
-            while (!client.isClosed()) {
-                Expression expression = (Expression) inputStream.readObject();
-                calculator.calculate(expression);
-                outputStream.writeObject(expression);
+                while (!client.isClosed()) {
+                    Expression expression = (Expression) inputStream.readObject();
+                    calculator.calculate(expression);
+                    outputStream.writeObject(expression);
+                }
+
+            } catch (IOException | ClassNotFoundException e) {
+                logger.error("Process failed!", e);
             }
-
-        } catch (IOException | ClassNotFoundException e) {
-            logger.error("Process failed!", e);
         }
     }
-
 }

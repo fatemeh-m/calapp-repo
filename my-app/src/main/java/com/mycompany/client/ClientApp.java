@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 @Component
@@ -30,7 +31,7 @@ public class ClientApp {
                     expression = connection.execute(expression);
                     System.out.println(expression.toString());
 
-                } catch (InputMismatchException e){
+                } catch (NoSuchElementException e){
                     System.out.println("Invalid expression found!");
                 } catch (Exception e){
                     System.out.println("Process failed!");
@@ -46,7 +47,7 @@ public class ClientApp {
         }
     }
 
-    public Expression getExpression(String input) throws InputMismatchException{
+    public Expression getExpression(String input) throws NoSuchElementException {
         double op1, op2;
         String operator;
         Scanner scanner = new Scanner(input);
