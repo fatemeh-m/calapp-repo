@@ -1,13 +1,11 @@
-package com.mycompany.server;
-
+package com.mycompany.client.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
-
-@ComponentScan(basePackages = {"com.mycompany.server"})
+@ComponentScan(basePackages = {"com.mycompany.client"})
 @Configuration
 @PropertySource("classpath:application.properties")
-public class AppConfig {
+public class ClientConfig {
 }

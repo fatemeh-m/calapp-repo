@@ -1,5 +1,7 @@
 package com.mycompany.server;
 
+import com.mycompany.server.config.AppConfig;
+import com.mycompany.server.server.ServerApp;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

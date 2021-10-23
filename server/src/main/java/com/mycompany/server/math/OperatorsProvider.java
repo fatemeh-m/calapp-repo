@@ -1,46 +1,44 @@
-package com.mycompany.server;
+package com.mycompany.server.math;
 
 import com.mycompany.Operation;
+import com.mycompany.server.exceptions.InvalidOperator;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import java.util.HashMap;
-import java.util.InputMismatchException;
 import java.util.Set;
 
 @Component
 public class OperatorsProvider {
-
-    private final HashMap<Character, Operation> operatorsMap = new HashMap<>();
+    @Value("${operators.packageName}")
+    private String packageName;
+    private HashMap<Character, Operation> operatorsMap;
     private static final Logger logger = LoggerFactory.getLogger(OperatorsProvider.class);
-    private final String packageName;
 
-    public OperatorsProvider(@Value("${operators.packageName}") String packageName) {
-        this.packageName = packageName;
-        addSupportedOperators();
-    }
 
-    private void addSupportedOperators(){
+    public void addSupportedOperators(){
+        operatorsMap = new HashMap<>();
         Reflections reflections = new Reflections(packageName);
         Set<Class<? extends Operation>> classes = reflections.getSubTypesOf(Operation.class);
+        Operation operation;
 
-        Operation op;
         for (Class<? extends Operation> opClass : classes) {
-            try {
-                op = opClass.newInstance();
-                operatorsMap.put(op.getKey(), op);
 
-            } catch (InstantiationException | IllegalAccessException e) {
+            try {
+                operation = opClass.getDeclaredConstructor().newInstance();
+                operatorsMap.put(operation.getKey(), operation);
+
+            } catch (Exception e) {
                 logger.error("operator " + opClass.getName() + "didn't instantiate!", e);
             }
         }
     }
 
-    public Operation getOperator(char key) {
+    public Operation getOperator(char key) throws InvalidOperator {
         if (!operatorsMap.containsKey(key)){
-            throw new InputMismatchException("Invalid operator found!");
+            throw new InvalidOperator();
         }
         return operatorsMap.get(key);
     }
