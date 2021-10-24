@@ -11,11 +11,14 @@ public class Expression implements Serializable {
     private final double operand2;
     private final char operator;
     private double result;
+    private boolean isCalculated;
+
 
     public Expression(double operand1, double operand2, char operator){
         this.operand1 = operand1;
         this.operand2 = operand2;
         this.operator = operator;
+        isCalculated = false;
     }
 
     public double getOperand1() {
@@ -38,8 +41,16 @@ public class Expression implements Serializable {
         this.result = result;
     }
 
-    public String toString(){
-        String str = operand1 + " " + operator + " " + operand2 + " = " + result;
-        return str;
+    public boolean isCalculated() {
+        return isCalculated;
     }
+
+    public void setCalculated() {
+        isCalculated = true;
+    }
+
+    public String toString(){
+        return operand1 + " " + operator + " " + operand2 + " = " + result;
+    }
+
 }
