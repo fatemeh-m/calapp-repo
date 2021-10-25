@@ -47,11 +47,7 @@ public class ClientApp {
                 System.out.println("Calculating expression failed!");
             }
 
-        } catch (InvalidExpression e){
-            logger.error(e.getMessage(), e);
-
         } catch (Exception e){
-            System.out.println("Process failed!");
             logger.error(e.getMessage(), e);
         }
     }
