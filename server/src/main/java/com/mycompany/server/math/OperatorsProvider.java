@@ -1,7 +1,7 @@
 package com.mycompany.server.math;
 
 import com.mycompany.Operation;
-import com.mycompany.server.exceptions.InvalidOperator;
+import com.mycompany.server.exceptions.InvalidOperatorException;
 import org.reflections.Reflections;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +16,6 @@ public class OperatorsProvider {
     private String packageName;
     private HashMap<Character, Operation> operatorsMap;
     private static final Logger logger = LoggerFactory.getLogger(OperatorsProvider.class);
-
 
     public void addSupportedOperators(){
         operatorsMap = new HashMap<>();
@@ -36,11 +35,10 @@ public class OperatorsProvider {
         }
     }
 
-    public Operation getOperator(char key) throws InvalidOperator {
+    public Operation getOperator(char key) throws InvalidOperatorException {
         if (!operatorsMap.containsKey(key)){
-            throw new InvalidOperator();
+            throw new InvalidOperatorException();
         }
         return operatorsMap.get(key);
     }
-
 }

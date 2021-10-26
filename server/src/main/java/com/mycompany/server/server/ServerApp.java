@@ -1,6 +1,5 @@
 package com.mycompany.server.server;
 
-
 import com.mycompany.server.math.Calculator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +11,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
 
 @Component
 public class ServerApp {
@@ -36,7 +34,7 @@ public class ServerApp {
             ServerSocket server = new ServerSocket(PORT);
             logger.info("Starting server on port " + PORT);
 
-            while(true) {
+            while (true) {
                 logger.info("Waiting for client...");
 
                 try {
@@ -44,13 +42,12 @@ public class ServerApp {
                     executorService.submit(new ClientHandler(newSocket, calculator));
                     logger.info("New client connected successfully");
 
-                } catch(IOException e) {
+                } catch (IOException e) {
                     logger.error("Error accepting client", e);
                 }
             }
-
         } catch (Exception e) {
-            logger.error("Error starting server on port "+PORT , e);
+            logger.error("Error starting server on port " + PORT, e);
         }
     }
 }
